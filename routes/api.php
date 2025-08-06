@@ -8,5 +8,7 @@ Route::get('/user', function (Request $request) {
     return $request->user();
 })->middleware('auth:sanctum');
 
-Route::post('image', [ImageController::class, 'read']);
-Route::get('get', [ImageController::class, 'get']);
+Route::prefix('image')->group(function () {
+    Route::post('/', [ImageController::class, 'store']);
+    Route::get('recognize', [ImageController::class, 'show']);
+});

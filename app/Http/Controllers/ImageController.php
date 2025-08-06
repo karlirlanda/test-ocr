@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Http;
 
 class ImageController extends Controller
 {
-    public function read(Request $request, OcrService $ocrService)
+    public function store(Request $request, OcrService $ocrService)
     {
         $file = $request->image;
         $path = $file->store('ids');
@@ -22,11 +22,11 @@ class ImageController extends Controller
         return response()->json($data);
     }
 
-    public function get(Request $request)
+    public function show(Request $request)
     {
         $response = Http::withHeaders([
             'Authorization' => 'Token ' . env('MINDEE_API_KEY'),
-        ])->get("https://api.mindee.net/v1/products/mindee/international_id/v2/documents/queue/5fc63e59-0268-4cf4-a3fc-b6dbd60a3d1a");
+        ])->get("https://api.mindee.net/v1/products/mindee/international_id/v2/documents/queue/$request->path");
 
         if (!$response->successful()) {
             logger()->error('Mindee API failed', [
