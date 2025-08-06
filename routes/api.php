@@ -11,4 +11,5 @@ Route::get('/user', function (Request $request) {
 Route::prefix('image')->group(function () {
     Route::post('/', [ImageController::class, 'store']);
     Route::get('recognize', [ImageController::class, 'show']);
+    Route::get('get-text', [ImageController::class, 'get']);
 });

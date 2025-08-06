@@ -35,4 +35,8 @@ return [
         ],
     ],
 
+    'mindee' => [
+        'key' => env('MINDEE_API_KEY'),
+    ],
+
 ];
