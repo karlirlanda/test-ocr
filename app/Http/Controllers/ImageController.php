@@ -25,11 +25,18 @@ class ImageController extends Controller
         $fullPath = storage_path('app/private/' . $path);
 
         if ($type === 'license') {
-            $jobId = $mindee->extractFromDriverLicense($fullPath);
+            $job = $mindee->extractFromDriverLicense($fullPath);
+
+            if (!$job) {
+                return response()->json([
+                    'data' => $job,
+                    'message' => 'Job ID cannot be null!',
+                ], HttpResponse::HTTP_UNPROCESSABLE_ENTITY);
+            }
 
             return response()->json([
                 'type' => 'license',
-                'job_id' => $jobId,
+                'job_id' => $job,
                 'message' => 'Async request accepted. Use job_id to check result.',
             ], HttpResponse::HTTP_OK);
         }

@@ -23,7 +23,7 @@ class MindeeOcrService
             ->post("{$this->baseUrl}/driver_license/v1/predict_async");
 
         if ($response->failed()) {
-            return null;
+            return $response;
         }
 
         return $response['job']['id'] ?? null;
