@@ -9,7 +9,8 @@ Route::get('/user', function (Request $request) {
 })->middleware('auth:sanctum');
 
 Route::prefix('image')->group(function () {
-    Route::post('/', [ImageController::class, 'store']);
-    Route::get('recognize', [ImageController::class, 'show']);
-    Route::get('get-text', [ImageController::class, 'get']);
+    Route::post('/google-orc', [ImageController::class, 'googleOcr']);
+    Route::post('/aws-ocr', [ImageController::class, 'awsOcr']);
+    Route::post('/mindee-store', [ImageController::class, 'mindeeStore']);
+    Route::post('/mindee-show', [ImageController::class, 'mindeeShow']);
 });
