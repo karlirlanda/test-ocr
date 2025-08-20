@@ -316,11 +316,6 @@ class TextractService
         return $data;
     }
 
-
-
-
-
-
     // -------------------------
     // SSS PARSER (sample, can refine later)
     // -------------------------
